@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<robot name="building">
+  <material name="concrete">
+    <color rgba="0.7 0.7 0.75 1.0"/>
+  </material>
+  
+  <material name="windows">
+    <color rgba="0.2 0.3 0.4 0.9"/>
+  </material>
+
+  <link name="base_link">
+    <inertial>
+      <mass value="0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+    </inertial>
+
+    <!-- Main Structure -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 5"/> <!-- 10m tall building -->
+      <geometry>
+        <box size="4 4 10"/>
+      </geometry>
+      <material name="concrete"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 5"/>
+      <geometry>
+        <box size="4 4 10"/>
+      </geometry>
+    </collision>
+    
+    <!-- Window Strip 1 -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 2.05 8"/> 
+      <geometry>
+        <box size="3 0.1 1.5"/>
+      </geometry>
+      <material name="windows"/>
+    </visual>
+    
+    <!-- Window Strip 2 -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 2.05 5"/> 
+      <geometry>
+        <box size="3 0.1 1.5"/>
+      </geometry>
+      <material name="windows"/>
+    </visual>
+
+     <!-- Window Strip 3 -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 2.05 2"/> 
+      <geometry>
+        <box size="3 0.1 1.5"/>
+      </geometry>
+      <material name="windows"/>
+    </visual>
+    
+    <!-- Roof Rim -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 10.1"/> 
+      <geometry>
+        <box size="4.2 4.2 0.2"/>
+      </geometry>
+      <material name="concrete"/>
+    </visual>
+
+  </link>
+</robot>

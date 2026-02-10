@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "author": "Antigravity",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad",
+      "top": 200,
+      "left": 100,
+      "attrs": {
+        "rows": "4",
+        "columns": "4"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "keypad:C3",
+      "esp:32",
+      "green",
+      []
+    ],
+    [
+      "keypad:C2",
+      "esp:33",
+      "green",
+      []
+    ],
+    [
+      "keypad:C1",
+      "esp:25",
+      "green",
+      []
+    ],
+    [
+      "keypad:R4",
+      "esp:27",
+      "green",
+      []
+    ],
+    [
+      "keypad:R3",
+      "esp:14",
+      "green",
+      []
+    ],
+    [
+      "keypad:R2",
+      "esp:12",
+      "green",
+      []
+    ],
+    [
+      "keypad:R1",
+      "esp:13",
+      "green",
+      []
+    ]
+  ]
+}
