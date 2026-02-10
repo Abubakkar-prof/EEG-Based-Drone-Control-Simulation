@@ -202,6 +202,21 @@ def main():
             # 2. Handle UDP (Latched)
             udp_cmd = controller.get_cmd()
             if udp_cmd:
+                if udp_cmd == "START":
+                    is_started = True
+                    # Spin props slightly to show idle?
+                    current_pos[2] = 0.21 # Lift slightly off ground
+                    print("[START] Drone Armed & Ready!")
+
+                elif udp_cmd == "RESET":
+                    current_pos = [0.0, 0.0, 0.2]
+                    current_yaw = 0.0
+                    latched_move_x = 0
+                    latched_move_y = 0
+                    latched_move_z = 0
+                    print("[RESET] Position Reset.")
+
+                # Flight Controls (ALWAYS ACTIVE - NO LOCK)
                 if udp_cmd == "FWD": latched_move_y = 1
                 elif udp_cmd == "BWD": latched_move_y = -1
                 
@@ -222,14 +237,6 @@ def main():
                     latched_move_x = 0
                     latched_move_y = 0
                     print("[LAND] Descending")
-                
-                elif udp_cmd == "RESET":
-                    current_pos = [0.0, 0.0, 0.2]
-                    current_yaw = 0.0
-                    latched_move_x = 0
-                    latched_move_y = 0
-                    latched_move_z = 0
-                    print("[RESET] Position Reset")
             
             # Combine Inputs (Priority to Keyboard if pressed, otherwise use latch)
             final_move_x = kb_move_x if kb_move_x != 0 else latched_move_x

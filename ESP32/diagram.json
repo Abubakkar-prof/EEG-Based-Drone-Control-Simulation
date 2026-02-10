@@ -36,49 +36,49 @@
     ],
     [
       "keypad:R1",
-      "esp:32",
+      "esp:13",
       "green",
       []
     ],
     [
       "keypad:R2",
-      "esp:33",
-      "green",
-      []
-    ],
-    [
-      "keypad:R3",
-      "esp:25",
-      "green",
-      []
-    ],
-    [
-      "keypad:R4",
-      "esp:26",
-      "green",
-      []
-    ],
-    [
-      "keypad:C1",
-      "esp:27",
-      "green",
-      []
-    ],
-    [
-      "keypad:C2",
-      "esp:14",
-      "green",
-      []
-    ],
-    [
-      "keypad:C3",
       "esp:12",
       "green",
       []
     ],
     [
+      "keypad:R3",
+      "esp:14",
+      "green",
+      []
+    ],
+    [
+      "keypad:R4",
+      "esp:27",
+      "green",
+      []
+    ],
+    [
+      "keypad:C1",
+      "esp:26",
+      "green",
+      []
+    ],
+    [
+      "keypad:C2",
+      "esp:25",
+      "green",
+      []
+    ],
+    [
+      "keypad:C3",
+      "esp:33",
+      "green",
+      []
+    ],
+    [
       "keypad:C4",
-      "esp:13",
+      "esp:32",
       "green",
       []
     ]

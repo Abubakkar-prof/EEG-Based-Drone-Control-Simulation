@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <Keypad.h>
 #include <WiFi.h>
@@ -23,15 +22,15 @@ char keys[ROWS][COLS] = {{'1', '2', '3', 'A'},
                          {'7', '8', '9', 'C'},
                          {'*', '0', '#', 'D'}};
 
-// Wiring (Safe Pins):
-// Rows -> 32, 33, 25, 26
-// Cols -> 27, 14, 12, 13
-byte rowPins[ROWS] = {32, 33, 25, 26};
-byte colPins[COLS] = {27, 14, 12, 13};
+// Wiring (MATCHING THE DIAGRAM - SCRAMBLE FIX):
+// Rows -> 27, 14, 12, 13
+// Cols -> 26, 25, 33, 32
+byte rowPins[ROWS] = {27, 14, 12, 13};
+byte colPins[COLS] = {26, 25, 33, 32};
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
-// -------- Command Mapping (USER RULES) --------
+// -------- Command Mapping (Standard Layout) --------
 String keyToCmd(char k) {
   switch (k) {
   case '2':
@@ -43,7 +42,7 @@ String keyToCmd(char k) {
   case '6':
     return "RIGHT";
   case '5':
-    return "HOVER"; // STOP
+    return "HOVER";
 
   case '1':
     return "UP";
@@ -52,9 +51,8 @@ String keyToCmd(char k) {
   case '0':
     return "RESET";
 
-  // Extra Helpers if desired, otherwise ignore
   case '7':
-    return "LAND";
+    return "START";
 
   default:
     return "";
@@ -71,7 +69,7 @@ void setup() {
   Serial.begin(115200);
   delay(500);
 
-  Serial.println("\n--- DRONE CONTROLLER STARTED (No LEDs) ---");
+  Serial.println("\n--- DRONE CONTROLLER STARTED (REVERTED) ---");
   Serial.println("Connecting to WiFi...");
 
   WiFi.begin(ssid, pass);
@@ -88,9 +86,10 @@ void setup() {
 
   Serial.println("--------------------------------");
   Serial.println("CONTROLS:");
-  Serial.println("  1: UP   | 2: FWD  | 3: DOWN");
-  Serial.println("  4: LEFT | 5: STOP | 6: RIGHT");
-  Serial.println("  8: BWD  | 0: RESET");
+  Serial.println("  2: FWD  | 8: BWD");
+  Serial.println("  4: LEFT | 6: RIGHT");
+  Serial.println("  1: UP   | 3: DOWN");
+  Serial.println("  7: START| 5: HOVER");
   Serial.println("--------------------------------");
 
   udp.begin(12345);
@@ -100,7 +99,7 @@ void loop() {
   char key = keypad.getKey();
 
   if (key) {
-    // Debug Print
+    // Debug
     Serial.print("Key [");
     Serial.print(key);
 
